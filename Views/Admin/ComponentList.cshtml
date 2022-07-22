@@ -1,0 +1,33 @@
+﻿
+@{
+    var componentList = ViewData["componentList"] as List<string>;
+}
+
+<div class="container">
+    <h1>Component_page</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome Componente</th>
+                <th>Nome Azioni</th>
+            </tr>
+            
+        </thead>
+        <tbody>
+            @foreach (string comp in componentList)
+            {
+                <tr>
+                    <td>@comp</td>
+                    <td>
+                        
+                            <a href="@Url.Action("InstallComponent","Admin", new {name = comp})">Installa</a>  
+                            
+                            <a href="@Url.Action("UnistallComponent","Admin", new {name = comp})">Disinstalla</a>
+                        
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
