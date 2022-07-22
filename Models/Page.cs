@@ -18,5 +18,10 @@
         {
             Title = title;
         }
+
+        public void EditPage(string title)
+        {
+            Title = title;
+        }
     }
 }

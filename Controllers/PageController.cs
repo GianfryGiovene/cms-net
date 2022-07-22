@@ -70,17 +70,51 @@ namespace Cms_Net.Controllers
         // GET: HomeController1/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            using(CmsContext db = new CmsContext())
+            {
+                Page page = db.Pages.Where(i => i.Id == id).FirstOrDefault();
+                if(page == null)
+                {
+                    return NotFound();
+                }
+                else
+                {
+                     return View(page);
+                }
+            }
+            
         }
 
         // POST: HomeController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(int id, Page page)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (!ModelState.IsValid)
+                {
+                    using (CmsContext db = new CmsContext())
+                    {
+                        return View("Edit");
+
+                    }
+                }
+                using (CmsContext db = new CmsContext())
+                {
+                    Page editPage = db.Pages.Where(p => p.Id == id).FirstOrDefault();
+                    if(editPage != null)
+                    {
+                        editPage.EditPage(page.Title);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return NotFound();
+                    }
+                    
+                }
             }
             catch
             {
