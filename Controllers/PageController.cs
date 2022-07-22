@@ -23,7 +23,20 @@ namespace Cms_Net.Controllers
         // GET: HomeController1/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            using( CmsContext db = new CmsContext())
+            {
+                Page page = db.Pages.Where(p => p.Id == id).FirstOrDefault();
+                if(page == null)
+                {
+                    return NotFound("Pizza non trovata");
+                }
+                else
+                {
+                    return View("Detail", page);
+                }
+                
+            }
+            
         }
 
         // GET: HomeController1/Create
@@ -63,7 +76,7 @@ namespace Cms_Net.Controllers
             }
             catch
             {
-                return View();
+                return NotFound("Errore imprevisto");
             }
         }
 
@@ -75,7 +88,7 @@ namespace Cms_Net.Controllers
                 Page page = db.Pages.Where(i => i.Id == id).FirstOrDefault();
                 if(page == null)
                 {
-                    return NotFound();
+                    return NotFound("Pagina non trovata");
                 }
                 else
                 {
