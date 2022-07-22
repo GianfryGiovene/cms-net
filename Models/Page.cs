@@ -7,7 +7,12 @@
 
         List<Component>? Components { get; set; }
 
-       
+
+
+        public Page()
+        {
+
+        }
 
         public Page(string title)
         {

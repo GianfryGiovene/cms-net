@@ -2,7 +2,34 @@
     ViewData["Title"] = "Lista Pagine";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Lista Pagine</h1>
-    
+@model List<Page>
+
+
+<div class="contaienr">
+    <div class="text-center">
+        <h1 class="display-4">Lista Pagine</h1>    
+    </div>
+    <div>
+        <a class="btn btn-success" href="@Url.Action("Create","Page")"><strong>+</strong> pagina</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome Componente</th>
+                <th>Nome Azioni</th>
+            </tr>
+            
+        </thead>
+       <tbody>
+            @foreach (Page comp in Model)
+            {
+                <tr>
+                    <td>@comp.Title</td>
+                    <td>
+                       In arrivo... 
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>

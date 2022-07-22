@@ -29,17 +29,37 @@ namespace Cms_Net.Controllers
         // GET: HomeController1/Create
         public ActionResult Create()
         {
-            return View();
+
+            using (CmsContext db = new CmsContext())
+            {
+                Page page = new Page();
+
+                return View("Create", page);
+            }
         }
 
         // POST: HomeController1/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Page p)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                if (!ModelState.IsValid)
+                {
+                    using(CmsContext db = new CmsContext())
+                    {
+                        return View("Create");
+
+                    }
+                }
+                using (CmsContext db = new CmsContext())
+                {
+                    db.Pages.Add(p);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                
             }
             catch
             {

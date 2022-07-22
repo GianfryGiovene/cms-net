@@ -8,7 +8,7 @@ namespace Cms_Net.Controllers
     public class AdminController : Controller
     {
         private IWebHostEnvironment _hostEnvironment;
-        // GET: HomeController1
+        
         public AdminController(IWebHostEnvironment environment)
         {
             _hostEnvironment = environment;
