@@ -8,7 +8,6 @@
         List<Component>? Components { get; set; }
 
 
-
         public Page()
         {
 

@@ -133,7 +133,7 @@ namespace Cms_Net.Controllers
             }
             catch
             {
-                return View();
+                return NotFound();
             }
         }
 
@@ -150,11 +150,27 @@ namespace Cms_Net.Controllers
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                using (CmsContext db = new CmsContext()) 
+                {
+                    Page page = db.Pages.Where(p => p.Id == id).FirstOrDefault();
+
+                    if(page != null)
+                    {
+                        db.Pages.Remove(page);
+                        db.SaveChanges();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        return NotFound("Pagina non trovata");
+                    }
+                    
+                }
+                
             }
             catch
             {
-                return View();
+                return NotFound();
             }
         }
     }

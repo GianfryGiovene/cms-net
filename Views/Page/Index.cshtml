@@ -21,14 +21,17 @@
             
         </thead>
        <tbody>
-            @foreach (Page comp in Model)
+            @foreach (Page p in Model)
             {
                 <tr>
-                    <td>@comp.Title</td>
-                    <td>
-                        <a class="btn btn-warning" href="@Url.Action("Edit","Page",new { id = comp.Id})">Modifica</a>
-                        <a class="btn btn-primary" href="@Url.Action("Details","Page",comp)">Anteprima di Pagina</a>
-                       
+                    <td>@p.Title</td>
+                    <td class="d-flex gap-3 align-items-center">
+                        <a class="btn btn-warning" href="@Url.Action("Edit","Page",new { id = p.Id})">Modifica</a>
+                        <a class="btn btn-primary" href="@Url.Action("Details","Page",p)">Anteprima di Pagina</a>
+                        <form asp-controller="Page" asp-action="Delete" asp-route-id="@p.Id" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </td>
                 </tr>
             }
