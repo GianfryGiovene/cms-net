@@ -27,7 +27,7 @@
                     <td>@comp.Title</td>
                     <td>
                         <a class="btn btn-warning" href="@Url.Action("Edit","Page",new { id = comp.Id})">Modifica</a>
-                        <a class="btn btn-primary" href="@Url.Action("Details","Page",new { id = comp.Id})">Anteprima di Pagina</a>
+                        <a class="btn btn-primary" href="@Url.Action("Details","Page",comp)">Anteprima di Pagina</a>
                        
                     </td>
                 </tr>

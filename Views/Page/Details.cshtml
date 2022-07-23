@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Dettaglio";
+}
+
+@model Page
+
+
+<div>
+    <div class="text-center">
+        <h1 class="display-4">@Model.Title</h1>         
+    </div>
+    <div  class="contaienr">
+        <div class="my-2">
+            <a class="btn btn-success" href="@Url.Action("Create","Component")">Aggiungi Componente</a>
+        </div>
+    </div>
+    
+</div>

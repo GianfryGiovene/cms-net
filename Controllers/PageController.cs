@@ -21,23 +21,25 @@ namespace Cms_Net.Controllers
         }
 
         // GET: HomeController1/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Page modelPage)
         {
             using( CmsContext db = new CmsContext())
             {
-                Page page = db.Pages.Where(p => p.Id == id).FirstOrDefault();
+                Page page = db.Pages.Where(p => p.Id == modelPage.Id).FirstOrDefault();
                 if(page == null)
                 {
                     return NotFound("Pizza non trovata");
                 }
                 else
                 {
-                    return View("Detail", page);
+                    return View("Details", page);
                 }
                 
             }
             
         }
+
+
 
         // GET: HomeController1/Create
         public ActionResult Create()
@@ -70,7 +72,7 @@ namespace Cms_Net.Controllers
                 {
                     db.Pages.Add(p);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("Details",p);
                 }
                 
             }
