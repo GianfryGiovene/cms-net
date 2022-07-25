@@ -1,10 +1,12 @@
 ﻿using Cms_Net.Context.Database;
 using Cms_Net.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Cms_Net.Controllers
 {
+    [Authorize]
     public class AdminController : Controller
     {
         private IWebHostEnvironment _hostEnvironment;
@@ -18,8 +20,6 @@ namespace Cms_Net.Controllers
             return View();
         }
 
-
-
         public ActionResult ComponentList()            
         {
             string path = "D:/Documenti/Coding/Corso_Experis/Esercizi/Cms-Net/Views/Page/Components";
@@ -30,7 +30,7 @@ namespace Cms_Net.Controllers
             foreach(string dir in dirs)
             {
                 
-                string[] dirSplit = dir.Split("/");
+                string[] dirSplit = dir.Split("\\");
                 string componentName = dirSplit.Last();
 
                 componentList.Add(componentName);
@@ -39,8 +39,6 @@ namespace Cms_Net.Controllers
             ViewData["componentList"] = componentList;
             return View();
         }
-
-
             
         public ActionResult InstallComponent(string name)
         {

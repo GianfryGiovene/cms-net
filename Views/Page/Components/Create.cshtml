@@ -1,0 +1,25 @@
+﻿@{
+    ViewData["Title"] = "Crea Componente";
+}
+@model Component 
+
+<div class="text-center">
+    <h1 class="display-4">Lista Pagine</h1>
+    <form asp-controller="Page" asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+
+         @******* INPUT TITLE ******
+        <div class="mb-3">
+            <label asp-for="Title">Titolo: </label>
+            <input asp-for="Title" class="d-block w-100" />            
+            <span asp-validation-for="Title" class="text-danger"></span>
+        </div>   
+
+        @******* SUBMIT ********@
+        <div>           
+            <button class=" btn btn-success" type="submit">Crea</button>
+        </div>
+        
+
+    </form>
+</div>

@@ -19,9 +19,12 @@ namespace Cms_Net.Models
         {
 
         }
-        public Component(string key)
+
+        public Component(string key,Page page)
         {
             ComponentDefinitionKey = key;
+            Page = page;
+            PageId = page.Id;
         }
     }
 }

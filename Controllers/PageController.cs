@@ -24,14 +24,17 @@ namespace Cms_Net.Controllers
         public ActionResult Details(Page modelPage)
         {
             using( CmsContext db = new CmsContext())
-            {
+            {                
                 Page page = db.Pages.Where(p => p.Id == modelPage.Id).FirstOrDefault();
+                
+
                 if(page == null)
                 {
-                    return NotFound("Pizza non trovata");
+                    return NotFound("Pagina non trovata");
                 }
                 else
                 {
+                    
                     return View("Details", page);
                 }
                 
@@ -87,14 +90,17 @@ namespace Cms_Net.Controllers
         {
             using(CmsContext db = new CmsContext())
             {
+                HelperModel hp = new HelperModel();
                 Page page = db.Pages.Where(i => i.Id == id).FirstOrDefault();
+                
                 if(page == null)
                 {
                     return NotFound("Pagina non trovata");
                 }
                 else
                 {
-                     return View(page);
+                    hp.Page=page;
+                     return View(hp);
                 }
             }
             
@@ -103,7 +109,7 @@ namespace Cms_Net.Controllers
         // POST: HomeController1/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, Page page)
+        public ActionResult Edit(int id, HelperModel hp)
         {
             try
             {
@@ -120,7 +126,9 @@ namespace Cms_Net.Controllers
                     Page editPage = db.Pages.Where(p => p.Id == id).FirstOrDefault();
                     if(editPage != null)
                     {
-                        editPage.EditPage(page.Title);
+                        editPage.EditPage(hp.Page.Title);
+                        //nn sono sicurissimo di questo
+                        editPage.Components = hp.ComponentList;
                         db.SaveChanges();
                         return RedirectToAction("Index");
                     }

@@ -1,25 +1,66 @@
 ﻿@{
     ViewData["Title"] = "Modifica pagina";
 }
-@model Page
+@model HelperModel
 
 <div class="text-center">
     <h1 class="display-4">Lista Pagine</h1>
-    <form asp-controller="Page" asp-action="Edit" asp-route-id="@Model.Id" method="post">
+    <form asp-controller="Page" asp-action="Edit" asp-route-id="@Model.Page.Id" method="post">
         @Html.AntiForgeryToken()
 
          @******* INPUT TITLE *******@
         <div class="mb-3">
-            <label asp-for="Title">Titolo: </label>
-            <input asp-for="Title" class="d-block w-100" />            
-            <span asp-validation-for="Title" class="text-danger"></span>
+            <label asp-for="Page.Title">Titolo: </label>
+            <input asp-for="Page.Title" class="d-block w-100" />            
+            <span asp-validation-for="Page.Title" class="text-danger"></span>
         </div>   
+        <div class="mb-3">
+            <a class="btn btn-success" href="@Url.Action("AddComponent","Component", Model)">Aggiungi Componente</a>
+        </div>
+        <div class="mb-3">
+            @*
+            <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome Componente</th>
+                    <th>Nome Azioni</th>
+                </tr>
+            </thead>
+           <tbody>
+                
+                    @foreach (Component comp in Model.ComponentList)
+                {
+                    <tr>
+                        <td>@comp.</td>
+                        <td class="d-flex gap-3 align-items-center">
+                            <a class="btn btn-warning" href="@Url.Action("Edit","Page",new { id = p.Id})">Modifica</a>
+                            <a class="btn btn-primary" href="@Url.Action("Details","Page",p)">Anteprima di Pagina</a>
+                            <form asp-controller="Page" asp-action="Delete" asp-route-id="@p.Id" method="post">
+                                @Html.AntiForgeryToken()
+                                <button type="submit" class="btn btn-danger">Delete</button>
+                            </form>
+                        </td>
+                    </tr>
+                }
+                
+            </tbody>
+        </table>*@
 
+        </div>
         @******* SUBMIT ********@
         <div>           
             <button class=" btn btn-success" type="submit">Modifica</button>
         </div>
-        
-
     </form>
+
+
+
+
+
+    @*<div class="my-2">
+            
+            <a class="btn btn-success" href="@Url.Action("Index","Component",Model)">Aggiungi Componente</a>
+
+        </div>*@
+
 </div>

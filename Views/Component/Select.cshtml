@@ -1,0 +1,30 @@
+﻿@{
+    ViewData["Title"] = "Crea Componente";
+}
+@model HelperModel 
+
+<div class="text-center">
+    <h1 class="display-4">Seleziona componente</h1>
+    <table class="table">
+            <thead>
+                <tr>
+                    <th>Nome Componente</th>
+                    <th>Nome Azioni</th>
+                </tr>
+            </thead>
+           <tbody>
+                
+                @foreach (ComponentDefinition compDef in Model.CompDeftList)
+                {
+                    <tr>
+                        <td>@compDef</td>
+                        <td class="d-flex gap-3 align-items-center">
+                            <a class="btn btn-warning" href="@Url.Action("Create","Component")">Modifica</a>
+                            
+                        </td>
+                    </tr>
+                }
+                
+            </tbody>
+        </table>
+</div>

@@ -1,0 +1,52 @@
+﻿@{
+    ViewData["Title"] = "Lista Componenti";
+}
+
+@model HelperModel
+
+
+<div class="contaienr">
+    <div class="text-center">
+        <h1 class="display-4">@Model.Page.Title</h1>    
+    </div>
+
+
+
+
+
+
+
+    <div>
+        <a class="btn btn-success" href="@Url.Action("Create","Component")"><strong>+</strong> componente</a>
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nome Componente</th>
+                <th>Nome Azioni</th>
+            </tr>
+            
+        </thead>
+       <tbody>
+           nulla assoluto
+           @*
+            @foreach (Page p in Model)
+            {
+                <tr>
+                    <td>@p.Title</td>
+                    <td class="d-flex gap-3 align-items-center">
+                        
+                        @*
+                            <a class="btn btn-warning" href="@Url.Action("Edit","Page",new { id = p.Id})">Modifica</a>
+                        <a class="btn btn-primary" href="@Url.Action("Details","Page",p)">Anteprima di Pagina</a>
+                        <form asp-controller="Page" asp-action="Delete" asp-route-id="@p.Id" method="post">
+                            @Html.AntiForgeryToken()
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                        
+                    </td>
+                </tr>
+            }*@
+        </tbody>
+    </table>
+</div>
